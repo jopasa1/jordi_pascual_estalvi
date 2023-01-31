@@ -60,6 +60,7 @@ class _CRUDViewBaseState extends State<CRUDViewBase> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+
       ),
       body: Center(
         child:Stack(children: [
