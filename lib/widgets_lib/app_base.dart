@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class BaseApp extends StatelessWidget {
   const BaseApp(
       {Key? key,
-      this.title = "CRUD Template",
+      this.title = "*- SAVINGS ACCOUNT -*",
       required this.body,
       this.actionButton})
       : super(key: key);
@@ -17,7 +17,7 @@ class BaseApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text(title,textAlign: TextAlign.right),
       ),
       body: body,
       floatingActionButton: actionButton,
@@ -29,8 +29,8 @@ class BaseApp extends StatelessWidget {
               decoration:
                   BoxDecoration(color: Colors.blue,border: Border.all(width: 2,color: Colors.black)),
               child: ListTile(
-                title: const Text("AUTHORS",textAlign: TextAlign.center,),
-                onTap: () => Navigator.of(context).pushNamed('/author_list'),
+                title: const Text("INCOME & EXPENSES",textAlign: TextAlign.center,),
+                onTap: () => Navigator.of(context).pushNamed('/transaction_list'),
               ),
             ),
             //Container(padding: const EdgeInsets.fromLTRB(5, 10, 5, 10),color: Colors.lightBlueAccent,child: const Text("Evaluación",)),

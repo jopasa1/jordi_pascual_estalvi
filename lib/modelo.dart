@@ -11,8 +11,13 @@ class Modelo {
 
   Modelo._internal();
 
+  final CRUD_Transaction crudTransaction = CRUD_Transaction();
+
   void add<T>(T item) {
     switch (T) {
+      case Transaction:{
+        crudTransaction.addItem(item as Transaction);
+      }break;
       default:
         throw UnimplementedError("Type ${T.toString()} not supported.");
     }
@@ -20,25 +25,33 @@ class Modelo {
 
   void delete<T>(T item) {
     switch (T) {
+      case Transaction:{
+        crudTransaction.deleteItem(item as Transaction);
+      }break;
       default:
         throw UnimplementedError("Type ${T.toString()} not supported.");
     }
   }
 
   void updateItem<T>(T originalItem, T updatedItem) {
-    delete(originalItem);
-    add(updatedItem);
+    switch (T) {
+      case Transaction:{
+        crudTransaction.updateItem(updatedItem as Transaction);
+      }break;
+      default:
+        throw UnimplementedError("Type ${T.toString()} not supported.");
+    }
   }
 
   List<T> getAll<T>() {
     switch (T) {
-      case Author:{
-        List<Author> authors = [];
-        Map<int, Author> datos = CRUD_Author().datos;
+      case Transaction:{
+        List<Transaction> transactions = [];
+        Map<String, Transaction> _datos = crudTransaction.datos;
 
-        datos.forEach((k, value) {authors.add(value);});
+        _datos.forEach((k, value) {transactions.add(value);});
 
-        return authors.cast();
+        return transactions.cast();
       }
       default:
         throw UnimplementedError("Type ${T.toString()} not supported.");

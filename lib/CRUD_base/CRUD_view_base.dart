@@ -13,7 +13,7 @@ abstract class CRUDFormulari<T extends Item> extends StatefulWidget  {
 
 class CRUDViewBase<T extends Item> extends StatefulWidget {
   CRUDViewBase(
-      {Key? key, required this.detailedView, required this.editFormView, this.title = "Gestió", this.item})
+      {Key? key, required this.detailedView, required this.editFormView, this.title = "ADD/EDIT ACCOUNT MOVEMENTS", this.item})
       : super(key: key);
 
   final CRUDControllerBase<T> _elController = CRUDControllerBase();
@@ -62,7 +62,14 @@ class _CRUDViewBaseState extends State<CRUDViewBase> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: getView(mode),
+        child:Stack(children: [
+          getView(mode),
+          Expanded(child: Align(
+            alignment: Alignment.bottomLeft,
+            child: FloatingActionButton(child: Icon(Icons.delete),onPressed:() {widget._elController.deleteItem(widget.item!);
+            Navigator.of(context).pop();}),
+          ))
+        ],) ,
       ),
       floatingActionButton: FloatingActionButton(
         heroTag: DateTime.now(),

@@ -18,4 +18,9 @@ class CRUDControllerBase<T extends Item> {
   List<T> getAllItems() {
     return elModel.getAll();
   }
+
+  deleteItem(T elItem){
+    elModel.delete(elItem);
+    return null;
+  }
 }

@@ -20,23 +20,23 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'CRUD Template',
+      title: '- SAVINGS ACCOUNT -',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       routes: {
-        '/author_list': (context) => CRUDListBase<Author>(
-            itemBuilder: createCards, addItemRoute: '', viewItemRoute: '/author_view'),
-        // '/author_view': (context) => CRUDViewBase<Author>(item:Author(1,"Nombre","Apellido"),detailedView: detailDialog,editFormView: CRUD_View_Author(),)
+        '/transaction_list': (context) => CRUDListBase<Transaction>(
+            itemBuilder: createCards, addItemRoute: '/transaction_add', viewItemRoute: '/transaction_view'),
+        '/transaction_add': (context) => CRUDViewBase<Transaction>(detailedView: detailDialog,editFormView: CRUD_View_Transaction(),)
       },
       onGenerateRoute: (routeSettings) {
         switch (routeSettings.name) {
-          case '/author_view':
+          case '/transaction_view':
             {
               return MaterialPageRoute(builder: (context) =>
-                  CRUDViewBase<Author>(item: routeSettings.arguments as Author,
+                  CRUDViewBase<Transaction>(item: routeSettings.arguments as Transaction,
                     detailedView: detailDialog,
-                    editFormView: CRUD_View_Author(),));
+                    editFormView: CRUD_View_Transaction(oTransaction: routeSettings.arguments as Transaction,),));
             }
         }
         return null;
@@ -58,6 +58,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return const BaseApp(body: Text("CRUD Template"));
+    return const BaseApp(body: Text("[WIP] ACCOUNT BALANCE"));
   }
 }
